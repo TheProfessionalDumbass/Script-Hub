@@ -1,6 +1,6 @@
 introducing a Script hub yes very boring intro
 made script for few games
-(Click for script)[https://YouTube.com/] 
+[Click for script](https://YouTube.com/)
 ```lua
 loadstring()
 ```
