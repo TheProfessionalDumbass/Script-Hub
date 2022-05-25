@@ -71,11 +71,53 @@ local themeStyles = {
         ElementColor = Color3.fromRGB(224, 224, 224)
     },
     BloodTheme = {
-        SchemeColor = Color3.fromRGB(227, 27, 27),
+        SchemeColor = Color3.fromRGB(227, 2, 2),
         Background = Color3.fromRGB(10, 10, 10),
         Header = Color3.fromRGB(5, 5, 5),
         TextColor = Color3.fromRGB(255,255,255),
         ElementColor = Color3.fromRGB(20, 20, 20)
+    },
+    RedBerry = {
+      SchemeColor = Color3.fromRGB(231, 17, 42),
+      Background = Color3.fromRGB(0, 0, 0),
+      Header = Color3.fromRGB(31, 31, 31),
+      TextColor = Color3.fromRGB(255,255,255),
+      ElementColor = Color3.fromRGB(31, 31, 31)
+    },
+    BlueBerry = {
+      SchemeColor = Color3.fromRGB(2, 17, 231),
+      Background = Color3.fromRGB(0, 0, 0),
+      Header = Color3.fromRGB(31, 31, 31),
+      TextColor = Color3.fromRGB(255,255,255),
+      ElementColor = Color3.fromRGB(31, 31, 31)
+    },
+    Corn = {
+      SchemeColor = Color3.fromRGB(249, 100, 30),
+      Background = Color3.fromRGB(0, 0, 0),
+      Header = Color3.fromRGB(0, 0, 0),
+      TextColor = Color3.fromRGB(255,255,255),
+      ElementColor = Color3.fromRGB(31, 31, 31)
+    },
+    Kiwi = {
+      SchemeColor = Color3.fromRGB(48, 255, 0),
+      Background = Color3.fromRGB(41, 41, 41),
+      Header = Color3.fromRGB(31, 31, 31),
+      TextColor = Color3.fromRGB(255,255,255),
+      ElementColor = Color3.fromRGB(66, 66, 66)
+    },
+    Luna = {
+      SchemeColor = Color3.fromRGB(126, 6, 232),
+      Background = Color3.fromRGB(0, 0, 0),
+      Header = Color3.fromRGB(31, 31, 31),
+      TextColor = Color3.fromRGB(255,255,255),
+      ElementColor = Color3.fromRGB(31, 31, 31)
+    },
+    Night = {
+      SchemeColor = Color3.fromRGB(37, 37, 166),
+      Background = Color3.fromRGB(24, 24, 107),
+      Header = Color3.fromRGB(28, 28, 198),
+      TextColor = Color3.fromRGB(255,255,255),
+      ElementColor = Color3.fromRGB(31, 31, 31)
     },
     GrapeTheme = {
         SchemeColor = Color3.fromRGB(166, 71, 214),
@@ -159,6 +201,18 @@ function Kavo.CreateLib(kavName, themeList)
         themeList = themeStyles.LightTheme
     elseif themeList == "BloodTheme" then
         themeList = themeStyles.BloodTheme
+    elseif themeList == "RedBerry" then
+      themeList = themeStyles.RedBerry
+    elseif themeList == "BlueBerry" then
+        themeList = themeStyles.BlueBerry
+    elseif themeList == "Corn" then
+        themeList = themeStyles.Corn
+    elseif themeList == "Kiwi" then
+        themeList = themeStyles.Kiwi
+    elseif themeList == "Luna" then
+        themeList = themeStyles.Luna
+    elseif themeList == "Night" then
+        themeList = themeStyles.Night
     elseif themeList == "GrapeTheme" then
         themeList = themeStyles.GrapeTheme
     elseif themeList == "Ocean" then
@@ -271,28 +325,6 @@ function Kavo.CreateLib(kavName, themeList)
     title.TextColor3 = Color3.fromRGB(245, 245, 245)
     title.TextSize = 16.000
     title.TextXAlignment = Enum.TextXAlignment.Left
-
-    close.Name = "close"
-    close.Parent = MainHeader
-    close.BackgroundTransparency = 1.000
-    close.Position = UDim2.new(0.949999988, 0, 0.137999997, 0)
-    close.Size = UDim2.new(0, 21, 0, 21)
-    close.ZIndex = 2
-    close.Image = "rbxassetid://3926305904"
-    close.ImageRectOffset = Vector2.new(284, 4)
-    close.ImageRectSize = Vector2.new(24, 24)
-    close.MouseButton1Click:Connect(function()
-        game.TweenService:Create(close, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
-            ImageTransparency = 1
-        }):Play()
-        wait()
-        game.TweenService:Create(Main, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-			Size = UDim2.new(0,0,0,0),
-			Position = UDim2.new(0, Main.AbsolutePosition.X + (Main.AbsoluteSize.X / 2), 0, Main.AbsolutePosition.Y + (Main.AbsoluteSize.Y / 2))
-		}):Play()
-        wait(1)
-        ScreenGui:Destroy()
-    end)
 
     MainSide.Name = "MainSide"
     MainSide.Parent = Main
@@ -1422,7 +1454,7 @@ function Kavo.CreateLib(kavName, themeList)
                             sliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - sliderDrag.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
                         end)
                         releaseconnection = uis.InputEnded:Connect(function(Mouse)
-                            if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+                            if Mouse.UserInputType == Enum.UserInputType.MouseButton1 or Mouse.UserInputType == Enum.UserInputType.Touch then
                                 Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 149) * sliderDrag.AbsoluteSize.X) + tonumber(minvalue))
                                 pcall(function()
                                     callback(Value)
@@ -2587,7 +2619,7 @@ function Kavo.CreateLib(kavName, themeList)
                 rgb.MouseButton1Down:connect(function()colorpicker=true end)
                 dark.MouseButton1Down:connect(function()darknesss=true end)
                 uis.InputEnded:Connect(function(input)
-                    if input.UserInputType.Name == 'MouseButton1' then
+                    if input.UserInputType.Name == 'MouseButton1' or input.UserInputType.Name == 'Touch' then
                         if darknesss then darknesss = false end
                         if colorpicker then colorpicker = false end
                     end
