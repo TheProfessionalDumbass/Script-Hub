@@ -12,7 +12,7 @@ loadstring(game:HttpGet'https://raw.githubusercontent.com/TheProfessionalDumbass
 
 # Tower of Hell 
 ```lua
-print('fetriry hub')
+loadstring(game:HttpGet'https://raw.githubusercontent.com/TheProfessionalDumbass/Script-Hub/main/Scripts/TowerofHell.lua')()
 ```
 
 # ~ All In one script soon...
