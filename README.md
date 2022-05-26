@@ -5,13 +5,14 @@ less features cause made recently
 
 
 
-** Bedwars **
+# Bedwars 
 ```lua
-print('fretrify hub')
+loadstring(game:HttpGet'https://raw.githubusercontent.com/TheProfessionalDumbass/Script-Hub/main/Scripts/Bedwars.lua')()
 ```
 
-** Tower of Hell **
+# Tower of Hell 
 ```lua
 print('fetriry hub')
 ```
 
+# ~ All In one script soon...
